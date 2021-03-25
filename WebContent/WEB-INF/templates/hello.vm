@@ -1,5 +1,17 @@
 <html>
 <body>
-Hello
+<h1>Hello cruel world, I changed this</h1>
+ <TABLE>
+        <TR>
+            <TH>Serial #</TH><TH>First Name</TH><TH>Last Name</TH>
+        </TR>
+        #foreach( $player in $players )
+            <TR>
+                <TD>$player.getId()</TD>
+                <TD>$player.getFornavn()</TD>
+                <TD>$player.getEtternavn()</TD>
+            </TR>
+        #end
+    </TABLE>
 </body>
 <html>
