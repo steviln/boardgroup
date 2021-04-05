@@ -1,0 +1,13 @@
+$bodycolor:#FFFFFF;
+$menycolor:#DDDDDD;
+$menyfontcolor:#1111FF;
+$mainfontcolor:#0000FF;
+
+body{
+	background-color:$bodycolor;
+	color:$mainfontcolor;
+}
+.menubar{
+	background-color:$menycolor;
+	color:$menyfontcolor;	
+}

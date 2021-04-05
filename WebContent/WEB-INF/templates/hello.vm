@@ -1,17 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
+#parse("subs/header.vm")
 <body>
-<h1>Hello cruel world, I changed this</h1>
- <TABLE>
-        <TR>
-            <TH>Serial #</TH><TH>First Name</TH><TH>Last Name</TH>
-        </TR>
-        #foreach( $player in $players )
-            <TR>
-                <TD>$player.getId()</TD>
-                <TD>$player.getFornavn()</TD>
-                <TD>$player.getEtternavn()</TD>
-            </TR>
-        #end
-    </TABLE>
+<div class="container-fluid">
+	#parse("subs/menu.vm")
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Forside</h1>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="table-responsive">
+ 				<table class="table">
+        			<tr>
+            			<th>Serial #</th><th>First Name</th><th>Last Name</th>
+        			</tr>
+        			#foreach( $player in $players )
+            			<tr>
+                			<td>$player.getId()</td>
+                			<td>$player.getFornavn()</td>
+                			<td>$player.getEtternavn()</td>
+            			</tr>
+        			#end
+    			</table>
+    		</div>
+    	</div>
+    	<div class="col-md-6 col-sm-12">
+    		Game list will come here
+    	</div>
+    </div>
+</div>
 </body>
 <html>

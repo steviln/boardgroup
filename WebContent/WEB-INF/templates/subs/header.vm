@@ -1,0 +1,5 @@
+<head>
+	<title>Brettspill resultater</title>
+    <link rel='stylesheet' href='webjars/bootstrap/4.6.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="style/mainlayout.css">
+</head>

@@ -1,1 +1,12 @@
 ALTER TABLE player ADD COLUMN overse INT DEFAULT 0;
+ALTER TABLE participation ADD COLUMN competitors INT DEFAULT 0;
+ALTER TABLE gamesession ADD COLUMN competitors INT DEFAULT 0;
+UPDATE gamesession AS main SET main.competitors = (SELECT COUNT(part.id) FROM participation AS part WHERE part.sesjonID = main.id GROUP BY part.sesjonID);
+SELECT play.*, (SELECT AVG(100 - (((par.posisjon - 1) / ses.competitors) * 100)) AS rank FROM (participation AS par, gamesession AS ses) WHERE par.sesjonID = ses.id AND par.spillerID = play.id GROUP BY par.spillerID) AS rangering FROM player AS play ORDER BY rangering DESC;
+
+SELECT play.id, CONCAT(play.fornavn,' ',play.etternavn) AS navn, ranke.rank AS rangering , ranke.antall AS antall
+FROM player AS play 
+JOIN (SELECT AVG(100 - (((par.posisjon - 1) / ses.competitors) * 100)) AS rank, par.spillerID, COUNT(par.id) AS antall FROM (participation AS par, gamesession AS ses) WHERE par.sesjonID = ses.id GROUP BY par.spillerID) ranke
+ON (ranke.spillerID = play.id)
+HAVING antall >= 3
+ORDER BY rangering DESC;
