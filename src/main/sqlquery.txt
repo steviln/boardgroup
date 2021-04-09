@@ -10,3 +10,15 @@ JOIN (SELECT AVG(100 - (((par.posisjon - 1) / ses.competitors) * 100)) AS rank, 
 ON (ranke.spillerID = play.id)
 HAVING antall >= 3
 ORDER BY rangering DESC;
+
+
+CREATE VIEW playerRanking AS
+SELECT play.id, CONCAT(play.fornavn,' ',play.etternavn) AS navn, ranke.rank AS rangering , ranke.antall AS antall
+FROM player AS play 
+JOIN (SELECT AVG(100 - (((par.posisjon - 1) / ses.competitors) * 100)) AS rank, par.spillerID, COUNT(par.id) AS antall FROM (participation AS par, gamesession AS ses) WHERE par.sesjonID = ses.id GROUP BY par.spillerID) ranke
+ON (ranke.spillerID = play.id)
+HAVING antall >= 3
+ORDER BY rangering DESC;
+
+
+CREATE VIEW gameList AS SELECT COUNT(ses.id) AS spillinger, gam.id, gam.navn FROM game AS gam, gamesession AS ses WHERE gam.id = ses.spillID GROUP BY gam.id HAVING spillinger > 0 ORDER BY spillinger DESC;

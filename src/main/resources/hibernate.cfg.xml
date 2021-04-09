@@ -21,6 +21,9 @@
     <property name="current_session_context_class">thread</property>
 
      <mapping class="datastore.player" />
+     <mapping class="datastore.gameList" />
+     <mapping class="datastore.playerRanking" />
+     
 
 </session-factory>
 </hibernate-configuration>

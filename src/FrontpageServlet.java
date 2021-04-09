@@ -8,6 +8,8 @@ import com.mysql.cj.log.Log;
 
 import hibernate.HibernateUtil;
 import datastore.player;
+import datastore.playerRanking;
+import datastore.gameList;
 import interfaces.*;
 
 import java.util.Iterator;
@@ -51,8 +53,10 @@ public class FrontpageServlet extends VelocityViewServlet implements ConnectionC
         
         try {
         	transact = this.session.beginTransaction();
-        	List<player> players = session.createQuery("FROM player").list();
+        	List<playerRanking> players = session.createQuery("SELECT v FROM playerRanking v",playerRanking.class).getResultList();
         	context.put("players", players);
+        	List<gameList> games = session.createQuery("SELECT a FROM gameList a",gameList.class).getResultList();
+        	context.put("games", games);
         	
         	transact.commit();
         }catch(Exception e) {

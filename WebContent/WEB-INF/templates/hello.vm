@@ -12,20 +12,33 @@
 			<div class="table-responsive">
  				<table class="table">
         			<tr>
-            			<th>Serial #</th><th>First Name</th><th>Last Name</th>
+            			<th>#</th><th>Navn</th><th>Rangering</th>
         			</tr>
         			#foreach( $player in $players )
             			<tr>
                 			<td>$player.getId()</td>
-                			<td>$player.getFornavn()</td>
-                			<td>$player.getEtternavn()</td>
+                			<td>$player.getNavn()</td>
+                			<td>$player.getRangering()</td>
             			</tr>
         			#end
     			</table>
     		</div>
     	</div>
     	<div class="col-md-6 col-sm-12">
-    		Game list will come here
+    		<div class="table-responsive">
+ 				<table class="table">
+        			<tr>
+            			<th>#</th><th>Navn</th><th>Antall spilt</th>
+        			</tr>
+        			#foreach( $game in $games )
+            			<tr>
+                			<td>$game.getId()</td>
+                			<td>$game.getNavn()</td>
+                			<td>$game.getSpillinger()</td>
+            			</tr>
+        			#end
+    			</table>
+    		</div>
     	</div>
     </div>
 </div>
