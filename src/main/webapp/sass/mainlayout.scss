@@ -2,6 +2,7 @@ $bodycolor:#FFFFFF;
 $menycolor:#DDDDDD;
 $menyfontcolor:#1111FF;
 $mainfontcolor:#0000FF;
+$displayborder: 700px;
 
 body{
 	background-color:$bodycolor;
@@ -10,4 +11,23 @@ body{
 .menubar{
 	background-color:$menycolor;
 	color:$menyfontcolor;	
+}
+.top-menu-item{
+	line-height:48px;	
+	font-size:30px;	
+}
+
+@media screen and (min-width: $displayborder) {
+	.top-menu-item{
+		float:left;
+		margin-left:25px;
+		margin-right:35px;
+	}
+}
+
+@media screen and (max-width: $displayborder){
+	.top-menu-item{
+		width:100%;
+		text-align:center;
+	}
 }

@@ -10,6 +10,7 @@ import hibernate.HibernateUtil;
 import datastore.player;
 import datastore.playerRanking;
 import datastore.gameList;
+import menu.*;
 import interfaces.*;
 
 import java.util.Iterator;
@@ -57,6 +58,8 @@ public class FrontpageServlet extends VelocityViewServlet implements ConnectionC
         	context.put("players", players);
         	List<gameList> games = session.createQuery("SELECT a FROM gameList a",gameList.class).getResultList();
         	context.put("games", games);
+        	List<menu.MenuItem> menu = MenuHelper.hentMeny();
+        	context.put("menu", menu);
         	
         	transact.commit();
         }catch(Exception e) {

@@ -1,5 +1,7 @@
 	<div class="row menubar">
 		<div class="col-sm-12">
-			The meny will come here, now as imported. Also now multilevel
+			#foreach( $item in $menu )
+			<div class="top-menu-item"><a href="$item.getUrl()">$item.getNavn()</a></div>
+			#end
 		</div>
 	</div>
