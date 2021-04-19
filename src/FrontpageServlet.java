@@ -4,6 +4,8 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.view.VelocityViewServlet;
 
 import org.hibernate.*;
+import org.hibernate.Session;
+
 import com.mysql.cj.log.Log;
 
 import hibernate.HibernateUtil;
@@ -12,6 +14,7 @@ import datastore.playerRanking;
 import datastore.gameList;
 import menu.*;
 import interfaces.*;
+import session.*;
 
 import java.util.Iterator;
 import java.util.List;
@@ -27,16 +30,17 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class FrontpageServlet extends VelocityViewServlet implements ConnectionCheck{
 	
-	private Session session = null;
+	private org.hibernate.Session dbsession = null;
+	private session.Session websession = null;
 	
 	public void openSession() {
-		this.session = HibernateUtil.getSessionFactory().openSession();
+		this.dbsession = HibernateUtil.getSessionFactory().openSession();
 	}
 	
 	public void closeSession() {
-		if(this.session != null) {
-			this.session.close();
-			this.session = null;
+		if(this.dbsession != null) {
+			this.dbsession.close();
+			this.dbsession = null;
 		}
 	}
 	
@@ -50,15 +54,19 @@ public class FrontpageServlet extends VelocityViewServlet implements ConnectionC
         Template template = null;                
         Transaction transact = null;
         
+        websession = session.SessionHandler.init_session(request);
+        //System.out.print("Sending user ID");
+        //System.out.print(String.valueOf(websession.getUserID()));
+        
         this.openSession();
         
         try {
-        	transact = this.session.beginTransaction();
-        	List<playerRanking> players = session.createQuery("SELECT v FROM playerRanking v",playerRanking.class).getResultList();
+        	transact = this.dbsession.beginTransaction();
+        	List<playerRanking> players = dbsession.createQuery("SELECT v FROM playerRanking v",playerRanking.class).getResultList();
         	context.put("players", players);
-        	List<gameList> games = session.createQuery("SELECT a FROM gameList a",gameList.class).getResultList();
+        	List<gameList> games = dbsession.createQuery("SELECT a FROM gameList a",gameList.class).getResultList();
         	context.put("games", games);
-        	List<menu.MenuItem> menu = MenuHelper.hentMeny();
+        	List<menu.MenuItem> menu = MenuHelper.hentMeny(websession);
         	context.put("menu", menu);
         	
         	transact.commit();

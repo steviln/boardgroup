@@ -1,7 +1,7 @@
 	<div class="row menubar">
 		<div class="col-sm-12">
 			#foreach( $item in $menu )
-			<div class="top-menu-item"><a href="$item.getUrl()">$item.getNavn()</a></div>
+			<div class="top-menu-item" id="menupoint-$item.getNumId()"><a href="$item.getUrl()">$item.getNavn()</a></div>
 			#end
 		</div>
 	</div>

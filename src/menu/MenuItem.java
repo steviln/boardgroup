@@ -1,10 +1,16 @@
 package menu;
 
+import session.Session;
+
 public class MenuItem {
 	
-	private String url = "";
-	private String navn = "";
-	private int num_id = 0;
+	protected String url = "";
+	protected String navn = "";
+	protected int num_id = 0;
+	
+	public MenuItem() {
+		
+	}
 	
 	public MenuItem(int tnum, String ul, String nam) {
 		this.url = ul;
@@ -23,6 +29,8 @@ public class MenuItem {
 	public int getNumId() {
 		return this.num_id;
 	}
+	
+
 	
 
 }

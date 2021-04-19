@@ -2,4 +2,5 @@
 	<title>Brettspill resultater</title>
     <link rel='stylesheet' href='webjars/bootstrap/4.6.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="style/mainlayout.css">
+    <script type="text/javascript" src="js/vue.js"></script>
 </head>
