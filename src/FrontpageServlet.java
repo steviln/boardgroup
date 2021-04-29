@@ -54,7 +54,7 @@ public class FrontpageServlet extends VelocityViewServlet implements ConnectionC
         Template template = null;                
         Transaction transact = null;
         
-        websession = session.SessionHandler.init_session(request);
+        websession = session.SessionHandler.init_session(request, context);
         //System.out.print("Sending user ID");
         //System.out.print(String.valueOf(websession.getUserID()));
         

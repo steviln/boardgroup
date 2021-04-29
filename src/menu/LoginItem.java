@@ -13,5 +13,7 @@ public class LoginItem extends MenuItem {
 			this.navn = "Log ut";
 		}
 	}
+	
+	
 
 }

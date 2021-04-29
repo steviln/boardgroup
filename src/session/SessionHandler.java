@@ -3,9 +3,11 @@ package session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.velocity.context.Context;
+
 public class SessionHandler {
 	
-	public static session.Session init_session(HttpServletRequest request) {
+	public static session.Session init_session(HttpServletRequest request, Context context) {
 		
 		HttpSession usessesion = request.getSession();
 		
@@ -17,6 +19,11 @@ public class SessionHandler {
 			usessesion.setAttribute("sessobj",usesec);
 		}
 		
+		if(usesec.getUserID() == 0) {
+			context.put("logged",0);
+		}else {
+			context.put("logged",1);
+		}
 		//usesec.accessCount++;
 		//System.out.println(usesec.accessCount);
 		

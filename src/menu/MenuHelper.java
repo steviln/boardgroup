@@ -13,7 +13,7 @@ public class MenuHelper {
 		menyliste.add(new menu.MenuItem(1,"","Forside"));
 		menyliste.add(new menu.MenuItem(2,"spill","Spill"));
 		menyliste.add(new menu.MenuItem(3,"spillere","Spillere"));
-		menyliste.add(new menu.LoginItem(100,101,"login","Login",websession));
+		//menyliste.add(new menu.LoginItem(100,101,"login","Login",websession));
 		
 		return menyliste;
 		

@@ -3,6 +3,7 @@ $menycolor:#DDDDDD;
 $menyfontcolor:#1111FF;
 $mainfontcolor:#0000FF;
 $displayborder: 700px;
+$menufontsize: 20px;
 
 body{
 	background-color:$bodycolor;
@@ -13,8 +14,11 @@ body{
 	color:$menyfontcolor;	
 }
 .top-menu-item{
-	line-height:48px;	
-	font-size:30px;	
+	line-height:$menufontsize + 18px;	
+	font-size:$menufontsize;	
+}
+.clickable-element{
+	cursor:pointer;
 }
 
 @media screen and (min-width: $displayborder) {
@@ -30,4 +34,11 @@ body{
 		width:100%;
 		text-align:center;
 	}
+}
+
+#login-button-holder{
+	float:right;
+	font-size:$menufontsize * 0.66;
+	width:100px;
+	text-align:center;
 }

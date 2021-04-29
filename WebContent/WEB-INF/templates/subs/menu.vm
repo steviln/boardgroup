@@ -1,7 +1,12 @@
 	<div class="row menubar">
 		<div class="col-sm-12">
+			#if($logged == 0)
+			<div class="clickable-element" id="login-button-holder" @click="clicked">Logg inn</div>
+			#else
+			<div class="clickable-element" id="login-button-holder">Logg ut</div>
+			#end
 			#foreach( $item in $menu )
-			<div class="top-menu-item" id="menupoint-$item.getNumId()"><a href="$item.getUrl()">$item.getNavn()</a></div>
+				<div class="top-menu-item" id="menupoint-$item.getNumId()"><a href="$item.getUrl()">$item.getNavn()</a></div>
 			#end
 		</div>
 	</div>
