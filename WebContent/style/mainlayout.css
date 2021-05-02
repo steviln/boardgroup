@@ -13,6 +13,10 @@ body {
   font-size: 20px;
 }
 
+.clickable-element {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 700px) {
   .top-menu-item {
     float: left;
@@ -31,6 +35,10 @@ body {
   font-size: 13.2px;
   width: 100px;
   text-align: center;
+}
+
+.vue-temp-hide {
+  display: none;
 }
 
 /*# sourceMappingURL=mainlayout.css.map */
