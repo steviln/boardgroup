@@ -1,5 +1,9 @@
 package session;
 
+import java.io.PrintWriter;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,15 +23,21 @@ public class SessionHandler {
 			usessesion.setAttribute("sessobj",usesec);
 		}
 		
-		if(usesec.getUserID() == 0) {
+		if(context != null && usesec.getUserID() == 0) {
 			context.put("logged",0);
-		}else {
+		}else if(context != null){
 			context.put("logged",1);
 		}
 		//usesec.accessCount++;
 		//System.out.println(usesec.accessCount);
 		
 		return usesec;
+	}
+	
+	public static void printJsonSession(PrintWriter skriver, session.Session usesec) {
+		JSONObject jsonretur = new JSONObject();
+		jsonretur.put("loggid", usesec.getUserID());
+		skriver.print(jsonretur.toString());
 	}
 
 }

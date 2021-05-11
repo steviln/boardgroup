@@ -18,15 +18,15 @@
         </init-param>
 	</servlet>
 	<servlet>  
-		<servlet-name>playings</servlet-name>  
-		<servlet-class>PlayingsServlet</servlet-class>  
+		<servlet-name>ajax</servlet-name>  
+		<servlet-class>AjaxServlet</servlet-class>  
 	</servlet> 
 
      
 
 	<servlet-mapping>  
-		<servlet-name>playings</servlet-name>  
-		<url-pattern>/spillinger/*</url-pattern>    
+		<servlet-name>ajax</servlet-name>  
+		<url-pattern>/ajax/*</url-pattern>    
 	</servlet-mapping>   
 	<servlet-mapping>   
 		<servlet-name>frontpage</servlet-name>  
