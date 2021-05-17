@@ -17,6 +17,9 @@ body{
 	line-height:$menufontsize + 18px;	
 	font-size:$menufontsize;	
 }
+.top-menu-item a{
+	text-decoration:none;
+}
 .clickable-element{
 	cursor:pointer;
 }
@@ -44,4 +47,12 @@ body{
 }
 .vue-temp-hide{
 	display:none;
+}
+.vue-temp-show{
+	color:$menyfontcolor;
+	border:none;
+	position:absolute;
+	left:100%;
+	margin-left:-280px;
+	top:8px;
 }

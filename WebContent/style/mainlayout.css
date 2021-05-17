@@ -13,6 +13,10 @@ body {
   font-size: 20px;
 }
 
+.top-menu-item a {
+  text-decoration: none;
+}
+
 .clickable-element {
   cursor: pointer;
 }
@@ -39,6 +43,15 @@ body {
 
 .vue-temp-hide {
   display: none;
+}
+
+.vue-temp-show {
+  color: #1111FF;
+  border: none;
+  position: absolute;
+  left: 100%;
+  margin-left: -280px;
+  top: 8px;
 }
 
 /*# sourceMappingURL=mainlayout.css.map */

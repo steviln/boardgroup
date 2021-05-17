@@ -39,5 +39,12 @@ public class SessionHandler {
 		jsonretur.put("loggid", usesec.getUserID());
 		skriver.print(jsonretur.toString());
 	}
+	
+	public static void doLogin(HttpServletRequest request, PrintWriter skriver) {
+		JSONObject jsonretur = new JSONObject();
+		jsonretur.put("retur", 0);
+		skriver.print(jsonretur.toString());
+		
+	}
 
 }

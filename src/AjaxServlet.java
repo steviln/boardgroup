@@ -16,6 +16,11 @@ public class AjaxServlet extends HttpServlet {
 		this.executeRequest(req,res,pw);
 	}
 	
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException  {  
+		PrintWriter pw = res.getWriter();//get the stream to write the data  
+		this.executeRequest(req,res,pw);
+	}	
+	
 	private void executeRequest(HttpServletRequest req,HttpServletResponse res,PrintWriter pw) {
 		//res.setContentType("text/html");//setting the content type  
 		res.setContentType("application/json");
@@ -24,8 +29,14 @@ public class AjaxServlet extends HttpServlet {
 		session.Parameter parameter = new session.Parameter(req.getRequestURL().toString(), req.getServletPath());
 		websession = session.SessionHandler.init_session(req, null);
 		
-		if(parameter.getCommand().equals("getsession")) {
+		String kommando = parameter.getCommand();
+		
+		//System.out.println("kommando er: " + kommando.toString());
+		
+		if(kommando.equals("getsession")) {
 			SessionHandler.printJsonSession(pw, websession);
+		}else if(kommando.equals("login")) {
+			SessionHandler.doLogin(req, pw);
 		}
 		
 		  
