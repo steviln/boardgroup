@@ -21,6 +21,12 @@ body {
   cursor: pointer;
 }
 
+.error-message {
+  color: #FF0000;
+  font-size: 12px;
+  line-height: 18px;
+}
+
 @media screen and (min-width: 700px) {
   .top-menu-item {
     float: left;

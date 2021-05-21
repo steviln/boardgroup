@@ -8,21 +8,32 @@
 			skjema: {
 				brukernavn: "",
 				passord: ""
-			}
+			},
+			errormessage: ""
 		}
 	},
 	methods: {
 		doLogin: function(){
-			console.log("data " + this.skjema.brukernavn + ":" + this.skjema.passord);
-			axios.post('/BoardgamesRegister/ajax/login',{ brukernavn: this.skjema.brukernavn,passord: this.skjema.passord })
+		
+			const formData = new URLSearchParams();
+			formData.append('brukernavn',this.skjema.brukernavn);
+			formData.append('passord',this.skjema.passord);
+				//console.log(formData);		
+			axios.post('/BoardgamesRegister/ajax/login',formData)
+			//axios.post('http://127.0.0.1/apitest.php',formData)
 			.then(function(response){
-				console.log(response);
+					if(response.data.retur == 0){
+						console.log("er jer inne");
+						this.errormessage = "feil brukernavn og/eller passord";
+					}else if(response.data.retur > 0){
+						location.reload();
+					}
 				})
-			.catch<(function(error){
+			.catch(function(error){
 			});
 		}
 	},
-	template: '<div><input type="text" name="brukernavn" v-model="skjema.brukernavn" placeholder="Brukernavn" /><input type="password" name="passord" v-model="skjema.passord" placeholder="Passord" /><button type="button" v-on:click="doLogin">Logg inn</button></div>'
+	template: '<div><input type="text" name="brukernavn" v-model="skjema.brukernavn" placeholder="Brukernavn" /><input type="password" name="passord" v-model="skjema.passord" placeholder="Passord" /><button type="button" v-on:click="doLogin">Logg inn</button><div class="error-message">{{errormessage}}</div></div>'
 
 	});
 	
@@ -30,16 +41,22 @@
 	{ data: function(){
 		return { 
 			tekst: "",
-			klasse: "vue-temp-hide"
+			klasse: "vue-temp-hide",
+			buttonmode: 0
 		 }
 	},
 	methods: {
 		visLogin: function(){
-			var modalElement = document.getElementById('loginModal');
-			//console.log(modalElement);
-			var loginModal = new bootstrap.Modal(modalElement,{ backdrop: true });
-			//console.log(loginModal);
-			loginModal.show();
+			
+			if(this.buttonmode == 1){
+				var modalElement = document.getElementById('loginModal');
+				var loginModal = new bootstrap.Modal(modalElement,{ backdrop: true });
+				loginModal.show();
+			}else if(this.buttonmode == 2){
+				axios.get('/BoardgamesRegister/ajax/logout').then(response => {
+					location.reload();
+				});
+			}
 		}
 	},
 	created(){
@@ -49,10 +66,12 @@
 			if(value.loggid == 0){
 				denne.tekst = "Logg inn";
 				denne.klasse = "vue-temp-show";
+				denne.buttonmode = 1;
 				console.log("er ikke logget paa");
 			}else{
 				denne.tekst = "Logg ut";
 				denne.klasse = "vue-temp-show";
+				denne.buttonmode = 2;
 				console.log("er logget på");	
 			} 
 			});

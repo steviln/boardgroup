@@ -10,7 +10,7 @@ public class Session {
 	}
 	
 	public void setUserID(int useid) {
-		this.userID = this.userID;
+		this.userID = useid;
 	}
 	
 	public int getUserID() {

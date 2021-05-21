@@ -19,11 +19,16 @@ public class player  implements java.io.Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Integer id;
+	 @Column
      private String fornavn;
+	 @Column
      private String etternavn;
      private String facebookId;
+     @Column
      private String epost;
+     @Column
      private String brukernavn;
+     @Column
      private String passord;
      private Integer rettighet;
      private Integer orgId;

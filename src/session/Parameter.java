@@ -7,8 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Parameter {
 	
 	private String command = "";
-	private List subcommands = new ArrayList();
-	private List idnumbs = new ArrayList();
+	private List<String> subcommands = new ArrayList<String>();
+	private List<Integer> idnumbs = new ArrayList<Integer>();
 	
 	public Parameter(String urlstring, String mapper) {
 		
@@ -36,11 +36,11 @@ public class Parameter {
 		return this.command;
 	}
 	
-	public List getSubcommands() {
+	public List<String> getSubcommands() {
 		return this.subcommands;
 	}
 	
-	public List getIdnumbs() {
+	public List<Integer> getIdnumbs() {
 		return this.idnumbs;
 	}
 

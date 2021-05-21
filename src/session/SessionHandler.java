@@ -1,13 +1,22 @@
 package session;
 
 import java.io.PrintWriter;
+import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import org.hibernate.*;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import datastore.player;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.velocity.context.Context;
+
+import hibernate.HibernateUtil;
 
 public class SessionHandler {
 	
@@ -40,9 +49,37 @@ public class SessionHandler {
 		skriver.print(jsonretur.toString());
 	}
 	
-	public static void doLogin(HttpServletRequest request, PrintWriter skriver) {
-		JSONObject jsonretur = new JSONObject();
+	public static void logOff(PrintWriter skriver, session.Session usesec) {
+		
+		usesec.setUserID(0);
+		
+		JSONObject jsonretur = new JSONObject();				
 		jsonretur.put("retur", 0);
+		skriver.print(jsonretur.toString());
+		
+	}
+	
+	public static void doLogin(HttpServletRequest request, PrintWriter skriver, session.Session usesec) {
+		
+		int loginID = 0;
+		
+		org.hibernate.Session dbsession = HibernateUtil.getSessionFactory().openSession();
+		Query<datastore.player> findlog = dbsession.createQuery("FROM player pl WHERE pl.brukernavn = :b AND pl.passord = :p");
+		findlog.setParameter("b",request.getParameter("brukernavn"));
+		findlog.setParameter("p",request.getParameter("passord"));
+		
+		List<datastore.player> rightuser = findlog.list();
+		//System.out.println(String.valueOf(rightuser.size()));
+		if(rightuser.size() > 0) {
+			loginID = rightuser.get(0).getId();
+			usesec.setUserID(loginID);
+		}
+
+		
+		dbsession.close();
+		
+		JSONObject jsonretur = new JSONObject();				
+		jsonretur.put("retur", loginID);
 		skriver.print(jsonretur.toString());
 		
 	}
