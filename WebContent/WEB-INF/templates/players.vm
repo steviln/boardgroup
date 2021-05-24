@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+#parse("subs/header.vm")
+<body>
+<div class="container-fluid">
+	#parse("subs/menu.vm")
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Spillere</h1>
+		</div>
+    	<div class="col-md-12 col-sm-12">
+    		<div class="table-responsive">
+ 				<table class="table">
+        			<tr>
+            			<th>#</th><th>Navn</th><th></th><th></th>
+            			#foreach( $player in $players )
+            				<tr>
+                				<td>$player.getId()</td>
+                				<td>$player.getFornavn() $player.getEtternavn()</td>
+                				<td><a href="/BoardgamesRegister/spillere/show/$player.getId()">Gå til</a></td>
+                				<td>
+                		
+                				#if($userid == $player.getId() || $editpermission > 0) 
+                					<a href="/BoardgamesRegister/spillere/edit/$game.getId()">Rediger</a> 
+                				#end
+                				</td>
+            				</tr>
+        				#end
+        			</tr>
+
+    			</table>
+    		</div>
+    	</div>
+    </div>
+</div>
+
+#parse("subs/bottom.vm")

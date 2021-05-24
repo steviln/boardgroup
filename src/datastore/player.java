@@ -63,7 +63,8 @@ public class player  implements java.io.Serializable {
     }   
     public void setOverse(Integer tugnore) {
         this.overse = tugnore;
-    }    
+    }
+    //
     //public void setDeltakelser(Set<Participation> lis) {
     //    this.deltakelser = lis;
     //}

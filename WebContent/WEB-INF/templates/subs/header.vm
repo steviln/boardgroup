@@ -1,7 +1,7 @@
 <head>
 	<title>Brettspill resultater</title>
-    <link rel='stylesheet' href='webjars/bootstrap/5.0.0/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="style/mainlayout.css">
-    <script type="text/javascript" src="js/vue.js"></script>    
+    <link rel='stylesheet' href='/BoardgamesRegister/webjars/bootstrap/5.0.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/BoardgamesRegister/style/mainlayout.css">
+    <script type="text/javascript" src="/BoardgamesRegister/js/vue.js"></script>    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>

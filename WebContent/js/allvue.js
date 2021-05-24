@@ -15,16 +15,16 @@
 	methods: {
 		doLogin: function(){
 		
+			var denne = this;
+		
 			const formData = new URLSearchParams();
 			formData.append('brukernavn',this.skjema.brukernavn);
 			formData.append('passord',this.skjema.passord);
-				//console.log(formData);		
+	
 			axios.post('/BoardgamesRegister/ajax/login',formData)
-			//axios.post('http://127.0.0.1/apitest.php',formData)
 			.then(function(response){
 					if(response.data.retur == 0){
-						console.log("er jer inne");
-						this.errormessage = "feil brukernavn og/eller passord";
+						denne.errormessage = "feil brukernavn og/eller passord";
 					}else if(response.data.retur > 0){
 						location.reload();
 					}
@@ -67,12 +67,12 @@
 				denne.tekst = "Logg inn";
 				denne.klasse = "vue-temp-show";
 				denne.buttonmode = 1;
-				console.log("er ikke logget paa");
+				//console.log("er ikke logget paa");
 			}else{
 				denne.tekst = "Logg ut";
 				denne.klasse = "vue-temp-show";
 				denne.buttonmode = 2;
-				console.log("er logget på");	
+				//console.log("er logget på");	
 			} 
 			});
 	},

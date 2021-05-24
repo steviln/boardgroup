@@ -2,7 +2,7 @@
 		<div class="col-sm-12" id="top-vue-login-element">
 			<sesson-change-button></sesson-change-button>
 			#foreach( $item in $menu )
-				<div class="top-menu-item" id="menupoint-$item.getNumId()"><a href="$item.getUrl()">$item.getNavn()</a></div>
+				<div class="top-menu-item" id="menupoint-$item.getNumId()"><a href="/BoardgamesRegister/$item.getUrl()">$item.getNavn()</a></div>
 			#end
 		</div>
 	</div>

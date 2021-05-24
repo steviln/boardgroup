@@ -21,12 +21,35 @@
 		<servlet-name>ajax</servlet-name>  
 		<servlet-class>AjaxServlet</servlet-class>  
 	</servlet> 
-
+	<servlet>
+		<servlet-name>games</servlet-name>
+		<servlet-class>Gameservlet</servlet-class>
+		<init-param>
+            <param-name>properties</param-name>
+            <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>players</servlet-name>
+		<servlet-class>PlayerServlet</servlet-class>
+		<init-param>
+            <param-name>properties</param-name>
+            <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+	</servlet>
      
 
 	<servlet-mapping>  
 		<servlet-name>ajax</servlet-name>  
 		<url-pattern>/ajax/*</url-pattern>    
+	</servlet-mapping>
+	<servlet-mapping>  
+		<servlet-name>games</servlet-name>  
+		<url-pattern>/spill/*</url-pattern>    
+	</servlet-mapping> 
+	<servlet-mapping>  
+		<servlet-name>players</servlet-name>  
+		<url-pattern>/spillere/*</url-pattern>    
 	</servlet-mapping>   
 	<servlet-mapping>   
 		<servlet-name>frontpage</servlet-name>  
