@@ -20,8 +20,8 @@
                 				<td><a href="/BoardgamesRegister/spillere/show/$player.getId()">Gå til</a></td>
                 				<td>
                 		
-                				#if($userid == $player.getId() || $editpermission > 0) 
-                					<a href="/BoardgamesRegister/spillere/edit/$game.getId()">Rediger</a> 
+                				#if($userid == $player.getId() || $editpermission > 0 || 1 == 1) 
+                					<a href="/BoardgamesRegister/spillere/edit/$player.getId()">Rediger</a> 
                 				#end
                 				</td>
             				</tr>

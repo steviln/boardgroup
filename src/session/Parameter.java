@@ -43,5 +43,13 @@ public class Parameter {
 	public List<Integer> getIdnumbs() {
 		return this.idnumbs;
 	}
+	
+	public int returnFirstNumber() {
+		if(this.idnumbs.size() == 0) {
+			return 0;
+		}else {
+			return this.idnumbs.get(0);
+		}
+	}
 
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+#parse("subs/header.vm")
+<body>
+<div class="container-fluid">
+	#parse("subs/menu.vm")
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Spill</h1>
+		</div>
+    	<div class="col-md-12 col-sm-12">
+
+    	</div>
+    </div>
+</div>
+#parse("subs/bottom.vm")

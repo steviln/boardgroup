@@ -5,6 +5,7 @@ import org.apache.velocity.tools.view.VelocityViewServlet;
 
 import org.hibernate.*;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import com.mysql.cj.log.Log;
 
@@ -55,6 +56,7 @@ public class PlayerServlet extends VelocityViewServlet implements ConnectionChec
         
         websession = session.SessionHandler.init_session(request, context);
         session.Parameter parameter = new session.Parameter(request.getRequestURL().toString(), request.getServletPath());
+        String templateName = "players.vm";
         
         context.put("userid", websession.getUserID());
         context.put("editpermission", 0);
@@ -67,13 +69,27 @@ public class PlayerServlet extends VelocityViewServlet implements ConnectionChec
         
         if(kommando.equals("show")) {
         	
+        }else if(kommando.equals("edit")){
+        	templateName = "editplayer.vm";
+        	int useID = parameter.returnFirstNumber();
+
+    		Query<datastore.player> findplay = this.dbsession.createQuery("FROM player pl WHERE pl.id = :i");
+    		findplay.setParameter("i",useID);
+    		List<datastore.player> rightuser = findplay.list();
+    		if(rightuser.size() == 0) {    		
+    			context.put("player",new datastore.player("", "", "", "", "", "", 0, 0, 0) );
+    		}else {    			
+    			context.put("player", rightuser.get(0));
+    		}
         }else {
         	transact = this.dbsession.beginTransaction();
         	List<player> players = dbsession.createQuery("SELECT a FROM player a",player.class).list();
         	context.put("players", players);
-        	List<menu.MenuItem> menu = MenuHelper.hentMeny(websession);
-        	context.put("menu", menu);
+        	
         }
+        
+        List<menu.MenuItem> menu = MenuHelper.hentMeny(websession);
+    	context.put("menu", menu);
         
         
         try {
@@ -86,7 +102,7 @@ public class PlayerServlet extends VelocityViewServlet implements ConnectionChec
 
         try {
         	//log("HERE TEST");
-            template = getTemplate("players.vm");
+            template = getTemplate(templateName);
             response.setHeader("Template Returned", "Success");
         } catch (Exception e) {
         	log(e.toString());

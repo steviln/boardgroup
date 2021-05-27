@@ -57,20 +57,25 @@ public class Gameservlet extends VelocityViewServlet implements ConnectionCheck{
         session.Parameter parameter = new session.Parameter(request.getRequestURL().toString(), request.getServletPath());
 		
 		String kommando = parameter.getCommand();
-        System.out.print("Kommandoen er " + kommando);
+		String templateName = "games.vm";
+        //System.out.print("Kommandoen er " + kommando);
         //System.out.print(String.valueOf(websession.getUserID()));
         
         this.openSession();
         
         if(kommando.equals("show")) {
         	
+        }else if(kommando.equals("edit")){
+        	templateName = "editgame.vm";
         }else {
         	transact = this.dbsession.beginTransaction();
         	List<gameList> games = dbsession.createQuery("SELECT a FROM gameList a",gameList.class).getResultList();
         	context.put("games", games);
-        	List<menu.MenuItem> menu = MenuHelper.hentMeny(websession);
-        	context.put("menu", menu);
+        	
         }
+        
+        List<menu.MenuItem> menu = MenuHelper.hentMeny(websession);
+    	context.put("menu", menu);
         
         
         try {
@@ -83,7 +88,7 @@ public class Gameservlet extends VelocityViewServlet implements ConnectionCheck{
 
         try {
         	//log("HERE TEST");
-            template = getTemplate("games.vm");
+            template = getTemplate(templateName);
             response.setHeader("Template Returned", "Success");
         } catch (Exception e) {
         	log(e.toString());

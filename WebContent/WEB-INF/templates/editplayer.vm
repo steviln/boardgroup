@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+#parse("subs/header.vm")
+<body>
+<div class="container-fluid">
+	#parse("subs/menu.vm")
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Rediger konto for $player.getFornavn() $player.getEtternavn()</h1>
+			<div id="player-edit-form">
+  				<div class="form-group">
+    				<label for="fornavn">Fornavn</label>
+    				<input type="text" value="$player.getFornavn()" class="form-control" id="fornavn" v-model="fornavn" />
+  				</div>
+  				<div class="form-group">
+    				<label for="etternavn">Etternavn</label>
+    				<input type="text" value="$player.getEtternavn()" class="form-control" id="etternavn" v-model="etternavn" />
+  				</div>
+  				<div class="form-group">
+    				<label for="epost">Fornavn</label>
+    				<input type="text" value="$player.getEpost()" class="form-control" id="epost" v-model="epost" />
+  				</div>
+  				<div class="form-group">
+    				<label for="brukernavn">Brukernavn</label>
+    				<input type="text" value="$player.getBrukernavn()" class="form-control" id="brukernavn" v-model="brukernavn" />
+  				</div>
+  				<div class="form-group">
+    				<label for="passorden">Passord</label>
+    				<input type="password" value="" class="form-control" id="passorden" v-model="passorden" />
+  				</div>
+  				<div class="form-group">
+    				<label for="passordto">Gjenta passord</label>
+    				<input type="password" value="" class="form-control" id="passordto" v-model="passordto" />
+  				</div>
+
+
+  				<button v-on:click = "doSendPlayer" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+    	<div class="col-md-12 col-sm-12">
+
+    	</div>
+    </div>
+</div>
+<script type="text/javascript" src="/BoardgamesRegister/js/players.js"></script>
+#parse("subs/bottom.vm")
