@@ -7,6 +7,7 @@ import javax.servlet.*;
 import java.io.*;
 import java.util.Enumeration;
 import java.util.Map;
+import helpers.Save;
 
 import session.*;
 
@@ -44,13 +45,20 @@ public class AjaxServlet extends HttpServlet {
 		String kommando = parameter.getCommand();
 		
 		//System.out.println("kommando er: " + kommando.toString());
-		
-		if(kommando.equals("getsession")) {
+		switch(kommando) {
+		case "getsession":
 			SessionHandler.printJsonSession(pw, websession);
-		}else if(kommando.equals("login")) {
+			break;
+		case "login":
 			SessionHandler.doLogin(req, pw,websession);
-		}else if(kommando.equals("logout")) {
+			break;
+		case "logout":
 			SessionHandler.logOff(pw, websession);
+			break;
+		case "saveplayer":
+			//System.out.println("in saveplayer");
+			helpers.Save.SavePlayer(req,websession);
+			break;
 		}
 		
 		  
